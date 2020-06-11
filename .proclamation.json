@@ -1,0 +1,25 @@
+{
+    "#": "This is a config file for Proclamation, the changelog combiner: https://gitlab.com/ryanpavlik/proclamation",
+    "SPDX-License-Identifier: CC0-1.0": "",
+    "SPDX-FileCopyrightText: 2020 Collabora, Ltd. and the Proclamation contributors": "",
+    "project_name": "Overlay Image Title",
+    "base_url": "https://github.com/rnwolf/overlay_image_title",
+    "news_filename": "./docs/changelog.md",
+    "sections": {
+        "Bugfix": {
+            "directory": "changes/bugfix"
+        },
+        "Documentation": {
+            "directory": "changes/doc"
+        },
+        "Feature": {
+            "directory": "changes/feature"
+        },
+        "Removal": {
+            "directory": "changes/removal"
+        },
+        "Misc": {
+            "directory": "changes/misc"
+        }
+    }
+}
