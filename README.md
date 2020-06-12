@@ -1,5 +1,22 @@
 # Overlay Image Title
 
+This is a tool to help overlay a small bit of text over an image.
+
+This is especially useful to add some credits to images used in presentations.
+
+```
+imagetitle
+```
+
+The image testing used a Pytest fixture discussed [here](https://redshiftzero.github.io/pytest-image/).
+
+Check test coverage :
+
+```
+pytest --cov=imagetitle tests/
+```
+
+
 # Tips for Win 10 environment
 
 If using Windows PowerShell terminal consider installing Set-PsEnv.psm1.

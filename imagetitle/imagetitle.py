@@ -1,90 +1,69 @@
 """This is a Docstring"""
-import re
 from typing import Tuple, List
-import random
 import typer
+from PIL import Image, ImageFont, ImageDraw, ImageEnhance
+
 
 app = typer.Typer()
 
-
-def roll(num_dice: int = 1, sides: int = 20) -> Tuple[List[int], int]:
-    """Docstring goes here"""
-    rolls = sorted(
-        [random.choice(range(1, sides + 1)) for _ in range(num_dice)], reverse=True
-    )
-    return (rolls, sum(rolls))
-
-
-@app.command("roll-num")
-def roll_num(
-    num_dice: int = typer.Option(  # noqa: B008
-        1, "-n", "--num-dice", help="number of dice to roll", show_default=True, min=1
-    ),
-    sides: int = typer.Option(  # noqa: B008
-        20, "-d", "--sides", help="number-sided dice to roll", show_default=True, min=1
-    ),
-    rolls: bool = typer.Option(  # noqa: B008
-        False, help="set to display individual rolls", show_default=True
-    ),
+@app.command()
+def add_title(
+    source_name: str = typer.Option( "input.jpg", "-i", "--input", help="source filename", show_default=True,),
+    output_name: str = "output.jpg",
+    position: str = "bottom",
+    text: str = "Some text.",
+    img_fraction: float = 0.75,
+    font_name: str = "arial",
 ):
-    """Rolls the dice from numeric inputs.
+    typer.echo("hello")
+    source_img = Image.open(source_name)
+    image_format = source_img.format
+    source_img = source_img.convert("RGBA")
+    width, hight = source_img.size
 
-    We supply the number and side-count of dice to roll with option arguments.
-    """
-    rolls_list, total = roll(num_dice=num_dice, sides=sides)
+    fontsize = 1  # starting font size
+    font = ImageFont.truetype(font_name, fontsize)
+    breakpoint = img_fraction * source_img.size[0]
+    jumpsize = 75
+    while True:
+        if font.getsize(text)[0] < breakpoint:
+            fontsize += jumpsize
+        else:
+            jumpsize = int(jumpsize / 2)
+            fontsize -= jumpsize
+        font = ImageFont.truetype(font_name, fontsize)
+        if jumpsize <= 1:
+            break
 
-    typer.echo(f"rolling {num_dice}D{sides}!\n")
-    typer.echo(f"your roll: {total}\n")
-    if rolls:
-        typer.echo(f"made up of {rolls_list}\n")
+    # get text size
+    text_size = font.getsize(text)
 
+    # set button size + 10px margins
+    button_size = (text_size[0] + 20, text_size[1] + 20)
 
-def parse_dice_string(dice_string: str) -> Tuple[int, int]:
-    """Extract digits from dice-roll strings like "2D6" with regex witchcraft"""
-    hit = re.search(r"(\d*)[dD](\d+)", dice_string)
-    if not hit:
-        raise ValueError("bad string")
+    # create image with correct size and black background
+    button_img = Image.new("RGBA", button_size, "grey")
 
-    count, sides = hit.groups()
-    count_int = int(count or 1)  # regex hits on "" for 1st digit, munge to 1
-    sides_int = int(sides)
-    return (count_int, sides_int)
+    # put text on button with 10px margins
+    button_draw = ImageDraw.Draw(button_img)
+    button_draw.text((10, 10), text, font=font)
 
+    # put button on source image in position (0, 0)
+    if position == "bottom":
+        source_img.paste(button_img, (0, hight - button_size[1]))
+    elif position == "top":
+        source_img.paste(button_img, (0, 0))
+    elif position == "right":
+        transposed_img = button_img.transpose(Image.ROTATE_270)
+        source_img.paste(transposed_img, (width - button_size[1], 0))
+    elif position == "left":
+        transposed_img = button_img.transpose(Image.ROTATE_90)
+        source_img.paste(transposed_img, (0, hight - button_size[0]))
 
-def roll_from_string(dice_string: str) -> Tuple[List[int], int, str]:
-    """Docsting goes here."""
-    count, sides = parse_dice_string(dice_string)
-    rolls, total = roll(num_dice=count, sides=sides)
-    return (rolls, total, f"{count}D{sides}")
-
-
-@app.command("hello")
-def hello_world():
-    """our first CLI with typer!
-    """
-    typer.echo("Opening blog post...")
-    typer.launch(
-        "https://pluralsight.com/tech-blog/python-cli-utilities-with-poetry-and-typer"
-    )
-
-
-@app.command("roll-str")
-def roll_string(dice_str: str):
-    """Rolls the dice from a formatted string.
-
-    We supply a formatted string DICE_STR describing the roll, e.g. '2D6'
-    for two six-sided dice.
-    """
-    try:
-        rolls_list, total, formatted_roll = roll_from_string(dice_str)
-    except ValueError:
-        typer.echo(f"invalid roll string: {dice_str}")
-        raise typer.Exit(code=1)
-
-    typer.echo(f"rolling {formatted_roll}!\n")
-    typer.echo(f"your roll: {total}\n")
+    # save in new file
+    source_img.convert("RGB").save(output_name, image_format)
 
 
-def main():
+if __name__ == "__main__":
     """This is the main entry point."""
     app()
