@@ -26,12 +26,12 @@ classifiers = [
 
 
 [tool.poetry.scripts]
-imagetitle = "imagetitle.imagetitle:add_title"
+imagetitle = "imagetitle.imagetitle:app"
 
 
 [tool.poetry.dependencies]
 python = "^3.8"
-typer = "*"
+typer = {extras = ["all"], version = "^0.2.1"}
 dynaconf = "^3.0.0rc1"
 importlib_metadata = {version = "^1.6.0", python = "<3.8"}
 Pillow = "^7.1.2"

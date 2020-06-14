@@ -2,18 +2,68 @@
 from typing import Tuple, List
 import typer
 from PIL import Image, ImageFont, ImageDraw, ImageEnhance
+from pathlib import Path
+from enum import Enum
+
+try:
+    from importlib.metadata import version, PackageNotFoundError  # type: ignore
+except ImportError:  # pragma: no cover
+    from importlib_metadata import version, PackageNotFoundError
+
+
+try:
+    __version__ = version("imagetitle")
+except PackageNotFoundError:  # pragma: no cover
+    __version__ = "unknown"
+
+
+class TitlePosition(str, Enum):
+    bottom = "bottom"
+    top = "top"
+    left = "left"
+    right = "right"
 
 
 app = typer.Typer()
 
+
+def version_callback(value: bool):
+    if value:
+        typer.echo(f"Version: {__version__}")
+        raise typer.Exit()
+
+
 @app.command()
 def add_title(
-    source_name: str = typer.Option( "input.jpg", "-i", "--input", help="source filename", show_default=True,),
-    output_name: str = "output.jpg",
-    position: str = "bottom",
-    text: str = "Some text.",
-    img_fraction: float = 0.75,
-    font_name: str = "arial",
+    source_name: Path = typer.Argument()   Option(
+        "input.png", "-i", "--input", help="source filename", show_default=True,
+    ),
+    output_name: Path = typer.Option(
+        "output.png", "-o", "--output", help="output filename", show_default=True,
+    ),
+    position: TitlePosition = typer.Option(
+        TitlePosition.bottom,
+        "-p",
+        "--position",
+        help="where to position the title on the image.",
+        show_default=True,
+    ),
+    text: str = typer.Option("Some text.", "-t", "--text", help="Title text",),
+    img_fraction: float = typer.Option(
+        0.75,
+        min=0,
+        max=1,
+        help="A faction between 0 and 1, specifying proportion of the edge title should cover.",
+        show_default=True,
+    ),
+    font_name: str = typer.Option(
+        "arial",
+        "-f",
+        "--font",
+        help="The font name for the title text.",
+        show_default=True,
+    ),
+    version: bool = typer.Option(None, "--version", callback=version_callback),
 ):
     typer.echo("hello")
     source_img = Image.open(source_name)
@@ -62,8 +112,3 @@ def add_title(
 
     # save in new file
     source_img.convert("RGB").save(output_name, image_format)
-
-
-if __name__ == "__main__":
-    """This is the main entry point."""
-    app()
