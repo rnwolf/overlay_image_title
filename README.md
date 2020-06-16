@@ -272,3 +272,34 @@ In order to maintain a consistent style in the CHANGELOG.md file, it is preferre
 
 ## Credits
 This package was created with Cookiecutter and the [rnwolf/py-cookiecutter](https://github.com/rnwolf/py-cookiecutter) project template.
+
+
+
+    source_name: Path = typer.Option(
+        "input.png", "-i", "--input", help="source filename", show_default=True,
+    ),
+    output_name: Path = typer.Option(
+        "output.png", "-o", "--output", help="output filename", show_default=True,
+    ),
+    position: TitlePosition = typer.Option(
+        TitlePosition.bottom,
+        "-p",
+        "--position",
+        help="where to position the title on the image.",
+        show_default=True,
+    ),
+    text: str = typer.Option("Some text.", "-t", "--text", help="Title text",),
+    img_fraction: float = typer.Option(
+        0.75,
+        min=0,
+        max=1,
+        help="A faction between 0 and 1, specifying proportion of the edge title should cover.",
+        show_default=True,
+    ),
+    font_name: str = typer.Option(
+        "arial",
+        "-f",
+        "--font",
+        help="The font name for the title text.",
+        show_default=True,
+    ),

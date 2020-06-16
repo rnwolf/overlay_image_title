@@ -1,49 +1,32 @@
 """This is a docstring to help you undersyand your tests later."""
-from imagetitle.imagetitle import add_title
+from typer.testing import CliRunner
+from imagetitle.imagetitle import app, main
+import platform
+
+runner = CliRunner()
 
 SOURCE_IMAGE = "./tests/input.png"
 
-def test_title_bottom(image_similarity):
+
+def get_os_font():
+    """The fonts installed on each OS differ.
+    So when generating images with text on each OS
+    we need to specify specific fonts that are going to be there.
+
+    See: https://fontsarena.com/blog/operating-systems-default-serif-fonts/
+
+    """
+    osname = platform.system()  # 'posix', 'Windows' or 'Darwin'
+    fonts = {'posix': 'Times New Roman',
+             'Windows': 'arial',
+             'Darwin': 'Times'}
+    return fonts[osname]
+
+
+def test_app():
     """Doc string goes here"""
-    result = add_title(
-        source_name=SOURCE_IMAGE,
-        output_name=image_similarity["filename"],
-        font_name="arial",
-    )  # noqa: F841
+    result = runner.invoke(app, ["World"])
+    assert result.exit_code == 0
+    assert "World" in result.stdout
 
 
-def test_title_left(image_similarity):
-    """Doc string goes here"""
-    result = app(
-        source_name=SOURCE_IMAGE,
-        output_name=image_similarity["filename"],
-        position="left",
-    )  # noqa: F841
-
-
-def test_title_right(image_similarity):
-    """Doc string goes here"""
-    result = app(
-        source_name=SOURCE_IMAGE,
-        output_name=image_similarity["filename"],
-        position="right",
-    )  # noqa: F841
-
-
-def test_title_top(image_similarity):
-    """Doc string goes here"""
-    result = app(
-        source_name=SOURCE_IMAGE,
-        output_name=image_similarity["filename"],
-        position="top",
-    )  # noqa: F841
-
-
-def test_command_line(capsys):
-    """Doc string goes here"""
-    result = app(text="Image by Irfan Simsar via Unsplash.")  # noqa: F841
-    stdout = capsys.readouterr().out
-
-    # regex = re.compile(r"rolling (\d+D\d+)!\n\nyour roll: (\d+)")
-    # roll_str, total = re.search(regex, stdout).groups()
-    assert True == True
