@@ -11,9 +11,11 @@ import os
 import pytest
 import numpy as np
 from PIL import Image
+import platform
 
 
 def assert_images_equal(image_1: str, image_2: str):
+    """ Compare if two PNG images are nearly similar. """
     img1 = Image.open(image_1)
     img2 = Image.open(image_2)
 
@@ -21,7 +23,9 @@ def assert_images_equal(image_1: str, image_2: str):
     img2 = img2.convert(img1.mode)
     img2 = img2.resize(img1.size)
 
-    sum_sq_diff = np.sum((np.asarray(img1).astype('float') - np.asarray(img2).astype('float'))**2)
+    sum_sq_diff = np.sum(
+        (np.asarray(img1).astype("float") - np.asarray(img2).astype("float")) ** 2,
+    )
 
     if sum_sq_diff == 0:
         # Images are exactly the same
@@ -33,10 +37,15 @@ def assert_images_equal(image_1: str, image_2: str):
 
 @pytest.fixture
 def image_similarity(request, tmpdir):
+    """ Use this Fixture to test if generated images equals saved baseline images.
+    """
     testname = request.node.name
-    filename = "{}.png".format(testname)
-    generated_file = os.path.join(str(tmpdir), "{}.png".format(testname))
+    osname = platform.system()  # 'posix', 'Windows' or 'Darwin'
+    filename = f"{testname}_{osname}.png"  # noqa: F841
+    generated_file = os.path.join(str(tmpdir), f"{testname}_{osname}.png")
 
-    yield {'filename': generated_file}
+    yield {"filename": generated_file}
 
-    assert_images_equal("tests/baseline_images/{}.png".format(testname), generated_file)
+    assert_images_equal(
+        f"tests/baseline_images/{testname}_{osname}.png", generated_file,
+    )

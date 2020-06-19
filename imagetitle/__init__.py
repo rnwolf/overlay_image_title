@@ -1,8 +1,10 @@
 """This is a docstring"""
+
+
 try:
-    from importlib.metadata import version, PackageNotFoundError  # type: ignore
+    from importlib.metadata import version, PackageNotFoundError
 except ImportError:  # pragma: no cover
-    from importlib_metadata import version, PackageNotFoundError
+    from importlib_metadata import version, PackageNotFoundError  # type: ignore
 
 
 try:
