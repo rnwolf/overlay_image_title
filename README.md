@@ -27,6 +27,19 @@ https://github.com/microsoft/vscode-python/issues/944#issuecomment-458774142
 
 DO NOT USE Pylint.  Raises false errors.
 
+
+# Tips for MacOS
+
+Make sure you install the Ubuntu fonts. We assume the "Ubuntu Condensed" is installed, although you can specify another font.
+
+```
+cd ~/Library/Fonts && { curl -O 'https://github.com/bloomberg/scatteract/raw/master/fonts/BRLNSR.TTF' ; cd -; }
+```
+
+https://meganerd.keybase.pub/ubuntu-font-family-0.83/Ubuntu-C.ttf
+
+See this [link](https://stackoverflow.com/questions/33868849/install-ttf-font-using-command-line) for how tou can install a specific font.
+
 ## Quickstart
 ```sh
 # Install the Github CLI tool gh.
@@ -252,6 +265,28 @@ poetry publish   # To publish packages aretefacts to PyPi
 
 ```
 
+## Docker Image
+
+Build Image with
+
+```
+docker build --pull --rm -f "Dockerfile" -t overlayimagetitle:latest "."
+```
+
+Run the code in the Docker image with:
+
+In Windows Powershell with (The volumn mapping to PWD directory varies depending on OS.)
+
+```
+docker run -t -i --rm -v ${PWD}:/usr/app overlayimagetitle:latest -i /usr/app/input.png -o /usr/app/out.png --font="/fnt/Ubuntu-C.ttf"
+```
+
+In order to get inside the Docker image use the following:
+
+```
+docker run -t -i --rm -v ${PWD}:/app overlayimagetitle:latest
+
+```
 
 
 

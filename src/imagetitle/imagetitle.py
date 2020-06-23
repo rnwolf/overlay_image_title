@@ -91,7 +91,7 @@ def main(
         "Some text.", "-t", "--title", help="Text for title.", show_default=False,
     ),
     font_name: str = typer.Option(
-        "arial",
+        "Ubuntu-C.ttf",
         "-f",
         "--font",
         help="Font name or path.",

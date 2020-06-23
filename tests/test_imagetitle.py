@@ -17,7 +17,7 @@ def get_os_font():
 
     """
     osname = platform.system()  # 'posix', 'Windows' or 'Darwin'
-    fonts = {"posix": "Times New Roman", "Windows": "arial", "Darwin": "Times"}
+    fonts = {"posix": "Ubuntu-C.ttf", "Windows": "Ubuntu-C.ttf", "Darwin": "Times"}
     return fonts[osname]
 
 
