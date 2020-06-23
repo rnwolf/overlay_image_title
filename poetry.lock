@@ -131,6 +131,17 @@ tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "isort (>=4.2.2)", "mock
 
 [[package]]
 category = "dev"
+description = "Get the % difference in images + generate a diff image"
+name = "diffimg"
+optional = false
+python-versions = "*"
+version = "0.2.3"
+
+[package.dependencies]
+Pillow = ">=4.3"
+
+[[package]]
+category = "dev"
 description = "Distribution utilities"
 name = "distlib"
 optional = false
@@ -1246,7 +1257,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "679cc2f7f69822de9e24a9a4d9417bce6062af734a9a5af2bc6fedd8d1ec9198"
+content-hash = "6d4b4b50326b3475179f8f48e007302af264f9568a639118de34c9b01338ee98"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -1326,6 +1337,9 @@ coverage = [
 dictdiffer = [
     {file = "dictdiffer-0.8.1-py2.py3-none-any.whl", hash = "sha256:d79d9a39e459fe33497c858470ca0d2e93cb96621751de06d631856adfd9c390"},
     {file = "dictdiffer-0.8.1.tar.gz", hash = "sha256:1adec0d67cdf6166bda96ae2934ddb5e54433998ceab63c984574d187cc563d2"},
+]
+diffimg = [
+    {file = "diffimg-0.2.3.tar.gz", hash = "sha256:f2dccd7f1ec988005448d3aaf2ac907ce0a18f4d36c0ab78e41e4768a4784ff3"},
 ]
 distlib = [
     {file = "distlib-0.3.0.zip", hash = "sha256:2e166e231a26b36d6dfe35a48c4464346620f8645ed0ace01ee31822b288de21"},
@@ -1708,6 +1722,7 @@ regex = [
     {file = "regex-2020.6.8.tar.gz", hash = "sha256:e9b64e609d37438f7d6e68c2546d2cb8062f3adb27e6336bc129b51be20773ac"},
 ]
 requests = [
+    {file = "requests-2.23.0-py2.7.egg", hash = "sha256:5d2d0ffbb515f39417009a46c14256291061ac01ba8f875b90cad137de83beb4"},
     {file = "requests-2.23.0-py2.py3-none-any.whl", hash = "sha256:43999036bfa82904b6af1d99e4882b560e5e2c68e5c4b0aa03b655f3d7d73fee"},
     {file = "requests-2.23.0.tar.gz", hash = "sha256:b3f43d496c6daba4493e7c431722aeb7dbc6288f52a6e04e7b6023b0247817e6"},
 ]
