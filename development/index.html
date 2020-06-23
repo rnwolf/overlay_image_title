@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Development - Overlay Image Title</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Overlay Image Title</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Overlay Image Title</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Installation/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../changelog/" class="nav-link">Changelog</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Development</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../help/" class="nav-link">Help</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../changelog/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../help/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/rnwolf/overlay_image_title/edit/master/docs/development.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#development" class="nav-link">Development</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#tips_for_win_10_environment" class="nav-link">Tips for Win 10 environment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#fonts" class="nav-link">Fonts</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#tips_for_macos" class="nav-link">Tips for MacOS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#development_process_overview" class="nav-link">Development Process Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#docker_image" class="nav-link">Docker Image</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#changelog_news_entries" class="nav-link">CHANGELOG / NEWS entries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="development"><a class="toclink" href="#development">Development</a></h1>
+<p>This package was created with Cookiecutter and the <a href="https://github.com/rnwolf/py-cookiecutter">rnwolf/py-cookiecutter</a> project template.</p>
+<p>This template should make it easier to develop python command line applications.</p>
+<p>These applications are based on the <a href="https://typer.tiangolo.com/">Typer</a> library.  They are packaged up using <a href="https://python-poetry.org/">Poetry</a></p>
+<p>Testing of the app is done via <a href="https://docs.pytest.org/en/latest/">PyTest</a>.</p>
+<p>The the application modifies images a Pytest fixture as discussed <a href="https://redshiftzero.github.io/pytest-image/">here</a> is used to test that the application is not accidentlally broken during development.</p>
+<p>As this is a new CLI application I am going for 100% testing coverage :</p>
+<pre><code>pytest --cov=imagetitle tests/
+</code></pre>
+
+<h1 id="tips_for_win_10_environment"><a class="toclink" href="#tips_for_win_10_environment">Tips for Win 10 environment</a></h1>
+<p>If using Windows PowerShell terminal consider installing Set-PsEnv.psm1.
+And then updating the virtualenv activate script because VSCode does not yet automatically load .env valiables in the Terminal, although they are loaded by the Python process.
+https://github.com/microsoft/vscode-python/issues/944#issuecomment-458774142</p>
+<p><code>Get-ChildItem Env:</code> To list environment vars in shell.</p>
+<p>I am not using Pylint in VSCode it seems to raise some false errors.</p>
+<h1 id="fonts"><a class="toclink" href="#fonts">Fonts</a></h1>
+<h2 id="tips_for_macos"><a class="toclink" href="#tips_for_macos">Tips for MacOS</a></h2>
+<p>The <code>imagetitle</code> application uses an "Ubuntu Condensed" font.  The following should enable you to install the font, at the terminal on MacOS.</p>
+<pre><code>cd ~/Library/Fonts &amp;&amp; { curl -O 'https://meganerd.keybase.pub/ubuntu-font-family-0.83/Ubuntu-C.ttf' ; cd -; }
+</code></pre>
+
+<h2 id="development_process_overview"><a class="toclink" href="#development_process_overview">Development Process Overview</a></h2>
+<p>Install the Github CLI tool <strong>gh</strong>.</p>
+<p>https://github.com/cli/cli</p>
+<p>Install the PlantUML utility to ensure that diagrams embeded in docs can be generated.
+Check <a href="https://pypi.org/project/plantuml-markdown/">instalation instructions.</a>
+On windows use  <code>choco install plantuml</code> or <code>scoop install plantuml</code></p>
+<p>Install Vale, a writing style linter and the 'Google Writing Style Rules'</p>
+<p>https://errata-ai.gitbook.io/vale/getting-started/installation</p>
+<p>Get the release and place executable into file on the path such as C:\Users\rnwol.local\bin</p>
+<p>Make sure you have the lastest <a href="https://github.com/errata-ai/Google/releases">Google Writting Style Rules</a></p>
+<p>Install pipx if not installed</p>
+<pre><code>python3 -m pip install pipx
+python3 -m pipx ensurepath
+</code></pre>
+
+<p>Install cookiecutter</p>
+<p><code>pipx install cookiecutter</code></p>
+<p>Install virtualenv to make setting up environments MUCH faster</p>
+<p>```pipx install virtualenv
+virtualenv --help</p>
+<pre><code>
+Install poetry, package dependency management tool
+
+```pipx install poetry```
+
+Make sure to configure poetry to save virtualenv to a local .venv location, so that it can be found by VSCode and PyCharm.
+
+```poetry config --local virtualenvs.in-project true```
+
+Use cookiecutter to create project from this template
+
+```pipx run cookiecutter gh:rnwolf/py-package-cookiecutter```
+
+Answer cookiecutter qustions.
+
+Enter Package directory
+
+```cd overlay_image_title```
+
+Initialise git repo
+```git init```
+
+Ensure that make-linux-release.sh file is executable.
+
+On  MS-Windows use :  ```git add --chmod=+x -- make-linux-release.sh```
+On Linux : ```chmod + x make-linux-release.s```
+
+Add and commit files.
+
+</code></pre>
+
+<p>git add --all
+git commit -m "First commit"</p>
+<pre><code>
+Create a repository for the current directory with GitHub GH cli utility.
+
+```gh repo create --public```
+
+Connect up local and remote repo. -u = upstream
+
+```git push -u origin master```
+
+Create virtualenv (Have some problems doing this with poetry)
+
+```py -3.8 -m venv .venv```  #Windows
+or
+```python3.8 -m venv .venv```
+or use https://virtualenv.pypa.io/en/latest/
+```virtualenv -p 3.8 .venv```
+
+Install all dependencies specified in pyproject.toml
+
+```poetry install```
+
+Setup pre-commit and pre-push hooks
+
+</code></pre>
+
+<p>poetry run pre-commit install -t pre-commit
+poetry run pre-commit install -t pre-push</p>
+<pre><code>
+Launch IDE, like VSCode
+
+Ctrl+Shift P  -&gt; Select Interperter, Testing, Linting etc.
+
+Specify what the next version is that will be worked on.
+bump current version with, bump rule:
+ - patch, minor, major, prepatch, preminor, premajor, prerelease.
+
+For example:
+
+```poetry version patch```
+
+Create a GitHub Issue and document what the intention of the planned change is.
+
+```gh issue create```
+
+Make a note of the issue number, to be used with the change note.
+Make a end user focused note of the change in the folder.
+
+```.\changes\feature\issue.&lt;issue number&gt;.md```
+
+Add tests in the .\tests folder.
+
+Make sure you use the utilities installed to ensure quality.
+
+```pytest  # Run all automated tests
+pytest --cov=imagetitle tests # Look for 100% coverage
+</code></pre>
+
+<p>Pin point which parts of the code are NOT covered by a test.</p>
+<pre><code>pytest --cov-report term-missing:skip-covered --cov=imagetitle .\tests\
+</code></pre>
+
+<p>Auto format code and tests</p>
+<pre><code>black tests
+black imagetitle
+</code></pre>
+
+<pre><code>flake8  # All sorts of guidance
+interrogate   # Docstring check
+safety check  # Check dependent packages for security adviories
+
+pre-commit run --all-files  # Run all the CI lint tests, including black for auomatic layout
+
+vale .\docs  # Check the quality of your documentation
+</code></pre>
+
+<p>Run and test your application in the following ways:</p>
+<pre><code>imagetitle --help
+python -m imagetitle --help
+pytest
+</code></pre>
+
+<p>Update DOCUMENTAION before you build the package.</p>
+<p>To preview documentation change summary use:</p>
+<p><code>proclamation build YOUR_NEW_VERSION_NUMBER</code></p>
+<p>To overwrite your changelog file with the updated one and delete the used changelog fragments.</p>
+<pre><code>proclamation build YOUR_NEW_VERSION_NUMBER --delete-fragments --overwrite
+</code></pre>
+
+<p>Update DOCUMENTAION before you build the package.
+Use Typer superpowers to build documentation based on DocStrings and Typer configuration</p>
+<pre><code>typer imagetitle.imagetitle utils docs --name imagetitle --output docs/autodoc.md
+</code></pre>
+
+<p>Check that the documentation is good.
+<code>mkdocs build</code> or <code>mkdocs serve</code> commands to build and review the documentation.</p>
+<p>Add the changed files</p>
+<pre><code>git add
+git commit -m &quot;My comment&quot;
+</code></pre>
+
+<p>If you have several commits to squash together do the following.</p>
+<pre><code>git log
+git rebase --interactive [commit-hash]
+</code></pre>
+
+<p>mark all the commits as squashable, except the first/older one
+mark a commit as squashable by changing the work pick into squash next to it (or s for brevity)</p>
+<p>Use Typer to generate the documentation for the Readme files.</p>
+<p><code>typer .\src\imagetitle\imagetitle.py utils docs --name imagetitle --output ./docs/help.md</code></p>
+<p>Copy the output of help.md into the README.MD and index.md files.</p>
+<p>OPTIONAL</p>
+<p>Publish the documentation to the GH-Pages at</p>
+<pre><code>http(s)://&lt;github_user&gt;.github.io/&lt;repository_name&gt;
+</code></pre>
+
+<p>Note: It takes a few minutes for the pages to apprear.
+https://rnwolf.github.io/imagetitle/</p>
+<pre><code>mkdocs gh-deploy # Subsequent commits to repo will automatically publish gh-pages with action workflow.
+</code></pre>
+
+<p>Commit tested code and reviewed documentation.</p>
+<pre><code>git commit -m &quot;What was added?&quot;
+git push
+</code></pre>
+
+<p>To create local build of the package
+add a VERSION_NUMBER as a semver tag. Based on version value in pyproject.toml
+Check with: grep ^version pyproject.toml</p>
+<pre><code>git tag v0.0.1
+git push --tags  # Tags have to be explicitly pused to the remote origin git repo.
+</code></pre>
+
+<p>Remove the previous build artefacts</p>
+<p><code>rm -rf dist build</code></p>
+<p>or</p>
+<pre><code>PS&gt; Remove-Items -force -r dist
+poetry build # Build release package
+</code></pre>
+
+<p>Add the TestPyPI repository to Poetry. The default location is to the real PyPI.
+poetry config repositories.test-pypi https://test.pypi.org/legacy/</p>
+<p>Publish, enter username and password
+Better to use tokens for a specific package if you can. https://pypi.org/help/#apitoken</p>
+<p><code>poetry publish -r test-pypi</code></p>
+<p>Add PyPI repo to Poetry, with the use of a token, rather than password.</p>
+<p><code>poetry config pypi-token.pypi my-token</code></p>
+<p>Or TEST release process to a LOCAL PRIVATE Devlopment PyPi instance.</p>
+<p>Reference:</p>
+<p>https://github.com/python-poetry/poetry/issues/726#issuecomment-598392820
+https://stefan.sofa-rockers.org/2017/11/09/getting-started-with-devpi/</p>
+<p>Setup a local Development PyPi to test the upload of releases with poetry
+NOTE CANNOT Use Python 3.8. Works with Python 3.7.</p>
+<p>If installing on a clean Ubuntu server then</p>
+<pre><code>apt-get -y update
+apt-get install -y python3-venv libssl-dev libffi-dev python3-dev build-essential
+</code></pre>
+
+<p>Create working directory</p>
+<pre><code>cd ~
+cd workspace  # or similar WIP directory
+mkdir mypypi
+</code></pre>
+
+<p>Create Virtualenv</p>
+<pre><code>python3.7 -m venv .venv
+./.venv/bin/python -m pip install pip --upgrade
+source ./.venv/bin/activate
+pip install devpi-web devpi-client
+devpi-init
+devpi-gen-config
+
+apt install -y supervisor
+supervisord -c gen-config/supervisord.conf
+
+devpi use http://localhost:3141
+devpi login root  #root password is blank!
+</code></pre>
+
+<p>Create a "packages" user &amp; index.</p>
+<pre><code>devpi user -c packages email=packaging@company.com password=packages
+devpi index -c packages/stable bases=root/pypi volatile=False
+</code></pre>
+
+<p>Add information about the DevPyPi server/service</p>
+<pre><code>poetry config repositories.stable http://localhost:3141/packages/stable
+
+poetry publish -r stable -u ${username} -p {password}
+poetry publish -r stable -u packages -p packages
+</code></pre>
+
+<p>Check index in your browser
+http://localhost:3141/packages/stable</p>
+<p>FINALY
+Download the CI package artefacts wheel and tar file, to local folder called ./dist
+Edit the release info in github and upload the release package artefacts.</p>
+<p><code>poetry publish   # To publish packages aretefacts to PyPi</code></p>
+<h2 id="docker_image"><a class="toclink" href="#docker_image">Docker Image</a></h2>
+<p>Build Image with</p>
+<pre><code>docker build --pull --rm -f &quot;Dockerfile&quot; -t overlayimagetitle:latest &quot;.&quot;
+</code></pre>
+
+<p>Run the code in the Docker image with:</p>
+<p>In Windows Powershell with (The volumn mapping to PWD directory varies depending on OS.)</p>
+<pre><code>docker run -t -i --rm -v ${PWD}:/usr/app overlayimagetitle:latest -i /usr/app/input.png -o /usr/app/out.png --font=&quot;/fnt/Ubuntu-C.ttf&quot;
+</code></pre>
+
+<p>In order to get inside the Docker image use the following:</p>
+<pre><code>docker run -t -i --rm -v ${PWD}:/app overlayimagetitle:latest
+
+</code></pre>
+
+<h2 id="changelog_news_entries"><a class="toclink" href="#changelog_news_entries">CHANGELOG / NEWS entries</a></h2>
+<p>The docs/changelog.md file is managed using pronouncments and all non trivial changes must be accompanied by a news entry. To add an entry to the changelog.md file, first you need to have created a repo issue describing the change you want to make. A Pull Request itself may function as such, but it is preferred to have a dedicated issue (for example, in case the PR ends up rejected due to code quality reasons).</p>
+<p>Once you have an issue or pull request, you take the number and you create a file inside of the changes directory.</p>
+<p>Thus if your issue or PR number is 1234 and this change is fixing a bug, then you would create a file docs/changelog/bugfix/1234.md . PRs can span multiple categories by creating multiple files (for instance, if you added a feature and deprecated/removed the old feature at the same time, you would create docs/changelog/bugfix/1234.md and docs/changelog/remove/1234.md). Likewise if a PR touches multiple issues/PRs you may create a file for each of them with the same contents and pronouncment will deduplicate them.</p>
+<h3 id="contents_of_a_news_entry"><a class="toclink" href="#contents_of_a_news_entry">Contents of a NEWS entry</a></h3>
+<p>The contents of this file are markdown formatted text that will be used as the content of the news file entry. You do not need to reference the issue or PR numbers here as pronouncement will automatically add a reference to all of the affected issues when rendering the news file.</p>
+<p>In order to maintain a consistent style in the CHANGELOG.md file, it is preferred to keep the news entry to the point, in sentence case, shorter than 120 characters and in an imperative tone – an entry should complete the sentence This change will …. In rare cases, where one line is not enough, use a summary line in an imperative tone followed by a blank line separating it from a description of the feature/change in one or more paragraphs, each wrapped at 120 characters. Remember that a news entry is meant for end users and should only contain details relevant to an end user.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

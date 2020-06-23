@@ -42,6 +42,12 @@
                             <li class="navitem">
                                 <a href="../changelog/" class="nav-link">Changelog</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../development/" class="nav-link">Development</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../help/" class="nav-link">Help</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -81,7 +87,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#installation" class="nav-link">Installation</a>
+            <li class="nav-item" data-level="2"><a href="#installation" class="nav-link">Installation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -90,10 +96,43 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="installation"><a class="toclink" href="#installation">Installation</a></h1>
-<p>At the command line::</p>
-<pre><code class="bash">pip install imagetitle
-</code></pre></div>
+<h2 id="installation"><a class="toclink" href="#installation">Installation</a></h2>
+<p>There are a number of ways you could install this utility.</p>
+<h3 id="python"><a class="toclink" href="#python">Python</a></h3>
+<p>If you are familiar with the installation of python packages in a virtual environment then you can install with:</p>
+<pre><code>pip install imagetitle
+</code></pre>
+
+<p>This will give you a command line application that you can use at the terminal.</p>
+<h4 id="pipx"><a class="toclink" href="#pipx">Pipx</a></h4>
+<p>Another approach is to use a utility called <a href="https://pypi.org/project/pipx/">Pipx</a> to install the application.</p>
+<pre><code class="console">pipx install imagetitle
+or
+pipx install git+https://github.com/rnwolf/overlay_image_title/
+</code></pre>
+
+<h3 id="docker"><a class="toclink" href="#docker">Docker</a></h3>
+<p>The utility is also packaged up in a Docker <a href="https://hub.docker.com/r/rnwolf/overlayimagetitle">image</a>.</p>
+<p>If you have docker installed then you can pull down the application and python all in one image.</p>
+<pre><code>docker pull rnwolf/overlayimagetitle
+</code></pre>
+
+<p>To show application help
+<code>docker run -t -i --rm -v ${PWD}:/app overlayimagetitle:latest</code></p>
+<p>Show version
+<code>docker run -t -i --rm -v ${PWD}:/app overlayimagetitle:latest --version</code></p>
+<p>Given a file called input.png in current working dir then with this produce output.png in
+<code>docker run -t -i --rm -v ${PWD}:/app overlayimagetitle:latest -i /app/input.png -f /fnt/Ubuntu-C.ttf</code></p>
+<p>Open a bash shell inside of the docker container
+<code>docker run -t -i --rm --entrypoint /bin/bash -v ${PWD}:/app overlayimagetitle:latest</code></p>
+<h3 id="setup_alias_for_docker_image"><a class="toclink" href="#setup_alias_for_docker_image">Setup alias for Docker Image</a></h3>
+<p>When using docker to run command setup a command alias for imagetitle
+In your powershell profile add the following</p>
+<p><code>function imagetitle {
+  docker run -it --rm v ${pwd}:/app overlayimagetitle:latest $args
+ }</code></p>
+<p>Or if you use bash terminal then update .bashrc profilr by adding:</p>
+<p><code>alias imagetitle='docker run -it --rm -v \`pwd\`:/app overlayimagetitle:latest'</code></p></div>
             </div>
         </div>
 

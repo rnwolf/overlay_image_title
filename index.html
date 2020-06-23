@@ -42,6 +42,12 @@
                             <li class="navitem">
                                 <a href="changelog/" class="nav-link">Changelog</a>
                             </li>
+                            <li class="navitem">
+                                <a href="development/" class="nav-link">Development</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="help/" class="nav-link">Help</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -83,7 +89,7 @@
             
             <li class="nav-item" data-level="1"><a href="#overlay_image_title" class="nav-link">Overlay Image Title</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#commands" class="nav-link">Commands</a>
+            <li class="nav-item" data-level="2"><a href="#usage" class="nav-link">Usage</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -101,19 +107,142 @@
 <h1 id="overlay_image_title"><a class="toclink" href="#overlay_image_title">Overlay Image Title</a></h1>
 <p>Overlay image, top, bottom, left or right, with a title.</p>
 <hr />
-<p>For MKDocs documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands"><a class="toclink" href="#commands">Commands</a></h2>
+<p>For more info visit https://github.com/rnwolf/overlay_image_title/.</p>
+<h2 id="usage"><a class="toclink" href="#usage">Usage</a></h2>
+<pre><code class="console">$ imagetitle [OPTIONS]
+</code></pre>
+
+<p><strong>Options</strong>:</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
+<li><code>-i, --input PATH</code>: Image file name.  [default: input.png]</li>
+<li><code>-o, --output PATH</code>: Output file name.  [default: output.png]</li>
+<li><code>-p, --position [bottom|top|left|right]</code>: Where to position the tile.  [default: bottom]</li>
+<li><code>-t, --title TEXT</code>: Text for title.</li>
+<li><code>-f, --font TEXT</code>: Font name or path.</li>
+<li><code>-r, --fraction FLOAT RANGE</code>: What fraction, 0 to 1, of the image edge should be covered by the title?  [default: 0.75]</li>
+<li><code>--version</code></li>
+<li><code>--install-completion</code>: Install completion for the current shell.</li>
+<li><code>--show-completion</code>: Show completion for the current shell, to copy it or customize the installation.</li>
+<li><code>--help</code>: Show this message and exit.</li>
 </ul>
 <h2 id="project_layout"><a class="toclink" href="#project_layout">Project layout</a></h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+<pre><code>C:\Users\workspace\overlay_image_title
+├── changes
+|  ├── bugfix
+|  ├── doc
+|  ├── feature
+|  ├── misc
+|  └── removal
+├── conftest.py
+├── dev-dependencies.in
+├── dev-dependencies.txt
+├── dist
+|  ├── imagetitle-0.0.0-py3-none-any.whl
+|  └── imagetitle-0.0.0.tar.gz
+├── Dockerfile
+├── docs
+|  ├── changelog.md
+|  ├── development.md
+|  ├── help.md
+|  ├── index.md
+|  └── Installation.md
+├── imagetitle.egg-info
+|  ├── dependency_links.txt
+|  ├── entry_points.txt
+|  ├── PKG-INFO
+|  ├── requires.txt
+|  ├── SOURCES.txt
+|  └── top_level.txt
+├── input copy.png
+├── input.png
+├── installed-packages.txt
+├── list-key-dev-packages.py
+├── make-linux-release.sh
+├── mkdocs.yml
+├── mypy.ini
+├── out.png
+├── output.jpg
+├── poetry.lock
+├── public
+|  ├── 404.html
+|  ├── changelog
+|  |  └── index.html
+|  ├── css
+|  |  ├── base.css
+|  |  ├── bootstrap.min.css
+|  |  └── font-awesome.min.css
+|  ├── development
+|  |  └── index.html
+|  ├── fonts
+|  |  ├── fontawesome-webfont.eot
+|  |  ├── fontawesome-webfont.svg
+|  |  ├── fontawesome-webfont.ttf
+|  |  ├── fontawesome-webfont.woff
+|  |  ├── fontawesome-webfont.woff2
+|  |  ├── glyphicons-halflings-regular.eot
+|  |  ├── glyphicons-halflings-regular.svg
+|  |  ├── glyphicons-halflings-regular.ttf
+|  |  ├── glyphicons-halflings-regular.woff
+|  |  └── glyphicons-halflings-regular.woff2
+|  ├── help
+|  |  └── index.html
+|  ├── img
+|  |  ├── favicon.ico
+|  |  └── grid.png
+|  ├── index.html
+|  ├── Installation
+|  |  └── index.html
+|  ├── js
+|  |  ├── base.js
+|  |  ├── bootstrap.min.js
+|  |  └── jquery-1.10.2.min.js
+|  ├── search
+|  |  ├── lunr.js
+|  |  ├── main.js
+|  |  ├── search_index.json
+|  |  └── worker.js
+|  ├── sitemap.xml
+|  └── sitemap.xml.gz
+├── pyproject.toml
+├── pytest.ini
+├── readme-sample-output.png
+├── README.md
+├── src
+|  ├── imagetitle
+|  |  ├── imagetitle.py
+|  |  ├── __init__.py
+|  |  ├── __main__.py
+|  |  └── __pycache__
+|  └── imagetitle.egg-info
+|     ├── dependency_links.txt
+|     ├── entry_points.txt
+|     ├── PKG-INFO
+|     ├── requires.txt
+|     ├── SOURCES.txt
+|     └── top_level.txt
+├── tests
+|  ├── baseline_images
+|  |  ├── test_app_position_bottom_Windows.png
+|  |  ├── test_app_position_left_Windows.png
+|  |  ├── test_app_position_right_Windows.png
+|  |  └── test_app_position_top_Windows.png
+|  ├── input.png
+|  ├── test_icon_image.ico
+|  ├── test_imagetitle.py
+|  ├── __init__.py
+|  └── __pycache__
+├── Ubuntu-C.ttf
+├── vale
+|  └── styles
+|     ├── demo
+|     ├── Google
+|     ├── Joblint
+|     ├── plugins
+|     ├── proselint
+|     ├── Spelling
+|     ├── vale
+|     └── write-good
+└── __pycache__
 </code></pre></div>
             </div>
         </div>
@@ -198,5 +327,5 @@ docs/
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-06-23 11:09:37.602030+00:00
+Build Date UTC : 2020-06-23 14:13:39.817632+00:00
 -->
