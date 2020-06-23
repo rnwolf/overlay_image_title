@@ -95,7 +95,7 @@ jobs:
 
     Multi-OS-Tests:
         # Run tests on mutiple operating systems, with the most recent versions of python.
-        if: needs.GetTagVersion.outputs.tagcount > 1
+        if: needs.GetTagVersion.outputs.tagcount >= 1
         needs: [ Linting, GetTagVersion ]
         name: ${{ matrix.os }} / ${{ matrix.python-version }}
         runs-on: ${{ matrix.os }}-latest
