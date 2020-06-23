@@ -12,7 +12,7 @@ name = "imagetitle"
 packages = [
     { include = "imagetitle", from = "src" },
 ]
-version = "0.0.0"
+version = "0.0.1"
 description = " Overlay image, top, bottom, left or right, with a title."
 license = "MIT"
 authors = ["Rudiger Wolf <Rudiger.Wolf@ThroughputFocus.com>"]
