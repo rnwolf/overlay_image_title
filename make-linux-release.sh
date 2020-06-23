@@ -2,7 +2,7 @@
 # This file is used to build some of the release artefacts for linux.
 # Ensure that this file is executable.
 #  On  MS-Windows use :  git add --chmod=+x -- make-linux-release.sh
-#  On Linux : chmod + x make-linux-release.sh
+#  On Linux : chmod +x make-linux-release.sh
 # Commit and push to repo.
 #
 # Building manylinux-compatible wheels is not trivial.
